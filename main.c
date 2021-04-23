@@ -14,8 +14,6 @@
 
 typedef struct options {
 	char *initFileName;
-	int graphicsMode;
-	int graphicsScale;
 } options_t;
 
 
@@ -25,8 +23,6 @@ typedef struct options {
  */
 void printHelp(const char *name){
   printf("Usage %s initialconfiguration\n", name);
-  printf("\t-g# : graphics mode (with # scale factor)\n");
-  printf("\n");
   printf("Interactive commands:\n");
   printf("\td filename : dump the current state to filename\n");
   printf("\tn N  : run the simulation N steps without displaying intermediate results\n");
@@ -41,20 +37,11 @@ void printHelp(const char *name){
  *
  */
 void parseOpts(int argc, char **argv, options_t *userOptsP) {
-	int opt;
-	userOptsP->graphicsMode = 0;
-	while((opt = getopt(argc, argv, "g::")) != -1) {
-		switch (opt) {
-		case ('g'):
-			userOptsP->graphicsMode = 1;
-			userOptsP->graphicsScale = optarg? atoi(optarg) : 2;
-			break;
-		default:
-			printHelp(argv[0]);
-			exit(EXIT_FAILURE);
-			break;
-		}
+	if(argc != 2) {
+		printHelp(argv[0]);
+		exit(EXIT_FAILURE);
 	}
+	userOptsP->initFileName = argv[1];
 }
 
 /**
@@ -77,18 +64,14 @@ int main(int argc, char **argv) {
 
 	parseOpts(argc, argv, &userOpts);
 
-	if (argv[optind] == NULL){
+	if (argv[1] == NULL){
 		fprintf(stderr, "must provide an initial file name\n");
 		exit(1);
 	}
 
-	if ((boards = createBoard(argv[optind])) == NULL) {
-		fprintf(stderr, "Can't oopen file %s\n", argv[optind]);
+	if ((boards = createBoard(argv[1])) == NULL) {
+		fprintf(stderr, "Failed to process file %s\n", argv[1]);
 		exit(1);
-	}
-
-	if (userOpts.graphicsMode) {
-		createWindow(userOpts.graphicsScale, boards->numRows, boards->numCols);
 	}
 
 	printf("simulating life board %d rows %d cols\n",
@@ -102,13 +85,8 @@ int main(int argc, char **argv) {
 
 	while (!done) {
 		char ibuf[ibufSize];
-		if (userOpts.graphicsMode) {
-			// this has to be here twice to ensure latest position is displayed
-			plotBoard(boards->currentBuffer, boards->numRows, boards->numCols);
-			plotBoard(boards->currentBuffer, boards->numRows, boards->numCols);
-		} else {
-			printAsciiBoard(boards->currentBuffer, boards->numRows, boards->numCols, boards->gen);
-		}
+
+		printAsciiBoard(boards->currentBuffer, boards->numRows, boards->numCols, boards->gen);
 
 		printf("cmd(d filename, s [#], n [#], q) : ");
 		fflush(stdout);
@@ -143,17 +121,10 @@ int main(int argc, char **argv) {
 			printf("speed gen/s = %08.2f  gen = %10d\n", (double)stepSize/getSecs(), boards->gen);
 			fflush(stdout);
 
-			if (userOpts.graphicsMode) {
-				plotBoard(boards->currentBuffer, boards->numRows, boards->numCols);
-			} else {
-				printAsciiBoard(boards->currentBuffer, boards->numRows, boards->numCols, boards->gen);
-			}
+			printAsciiBoard(boards->currentBuffer, boards->numRows, boards->numCols, boards->gen);
 		}
 		fflush(stdout);
 	}
-
-	if (userOpts.graphicsMode)
-		closeWindow();
 
 	deleteBoard(&boards);
 	assert(boards == NULL);

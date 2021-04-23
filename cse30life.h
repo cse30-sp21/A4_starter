@@ -40,19 +40,10 @@ extern void oscillator(unsigned char *buf, size_t cols, size_t v, size_t h);
 extern void oscillatorV(unsigned char *buf, size_t cols, size_t v, size_t h); 
 
 /**
- * board plotting/printing
+ * board printing
  */
 //! print the board to the screen as ascii
 extern void printAsciiBoard(unsigned char *buf, size_t rows, size_t cols, size_t gen);
-
-//! create a new graphics window
-extern int createWindow(size_t scale, size_t rows, size_t cols);
-
-//! close the graphics window
-extern int closeWindow();  // close the window
-
-//! print the board to a window
-extern void plotBoard(unsigned char *buf, size_t rows, size_t cols);
 
 //! dump board to a file
 extern void dumpBoard(unsigned char *buf, size_t rows, size_t cols, const char *dumpFileName);
