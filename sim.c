@@ -2,18 +2,18 @@
  * Assignment: life
  * Name: TODO
  * PID: TODO
- * Class: UCSD CSE30-WI21
+ * Class: UCSD CSE30-SP21
  *
  */
 #include "sim.h"
 
 #define CIMP
-extern void asm_doRow(belem *, belem *, belem *, uint32_t);
+extern void asm_doRow(belem *, belem *, belem *, size_t);
 
 /**
  * process one row of the board
  */
-static void doRow(belem *dest, belem *srcStart, belem * srcEnd, uint32_t cols){
+static void doRow(belem *dest, belem *srcStart, belem * srcEnd, size_t cols){
   // TODO: 
 }
 
@@ -25,7 +25,7 @@ static void doRow(belem *dest, belem *srcStart, belem * srcEnd, uint32_t cols){
  *   calculate the next board
  *   swap current and next
  */
-void simLoop(boards_t *self, uint32_t steps){
+void simLoop(boards_t *self, size_t steps){
   // TODO:
 }
 

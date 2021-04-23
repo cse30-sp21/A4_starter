@@ -2,7 +2,7 @@
  * Assignment: life
  * Name :TODO
  * PID: TODO
- * Class: UCSD CSE30-WI21
+ * Class: UCSD CSE30-SP21
  *
  */
 #include "cse30life.h"
@@ -59,7 +59,7 @@ void swapBuffers(boards_t *self){
 /**
  * get a cell index
  */
-int getIndex(boards_t *self, int row, int col){
+size_t getIndex(boards_t *self, size_t row, size_t col){
   // TODO:
 }
   

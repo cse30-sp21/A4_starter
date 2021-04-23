@@ -2,7 +2,7 @@
  * Assignment: life
  * Name : TODO
  * PID : TODO
- * Class: UCSD CSE30-WI21
+ * Class: UCSD CSE30-SP21
  *
  */
 
