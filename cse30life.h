@@ -48,3 +48,5 @@ extern void printAsciiBoard(unsigned char *buf, size_t rows, size_t cols, size_t
 //! dump board to a file
 extern void dumpBoard(unsigned char *buf, size_t rows, size_t cols, const char *dumpFileName);
 
+//! gets modulus of a value according to the following equation: (x+(x/N)*N)%N
+extern size_t getModVal(size_t x, size_t N);
