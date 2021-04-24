@@ -22,18 +22,18 @@ struct boards {
 	size_t numCols;		// number of cols in the life board
 	belem *currentBuffer;	// pointer to the current life board's buffer 
 	belem *nextBuffer;		// pointer to the next iteration's board buffer
-	size_t gen;			// generation number   
+	unsigned int gen;			// generation number   
 };
 
 extern boards_t *createBoard(char *filename);		// create a board structure
 extern void deleteBoard(boards_t **);				// delete a board structure
 extern void clearBoards(boards_t *self);			// clear the boards (current and next)
 extern void swapBuffers(boards_t *self);			// swap the board current and next
-extern void simStep(boards_t *self, size_t steps);		// simulate one step
+extern void simStep(boards_t *self, unsigned int steps);		// simulate one step
 
 
-extern void setSim(boards_t *self, void (*sim)(boards_t *self, size_t steps));
-//extern void setSim(boards_t *self, void (*sim)(belem *, belem *, size_t, size_t, size_t));
+extern void setSim(boards_t *self, void (*sim)(boards_t *self, unsigned int steps));
+//extern void setSim(boards_t *self, void (*sim)(belem *, belem *, unsigned int, unsigned int, unsigned int));
 
 extern size_t getIndex(size_t numCols, size_t row, size_t col);	// get index of (row,col) in 1D buffer
 
