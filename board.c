@@ -59,7 +59,7 @@ void swapBuffers(boards_t *self){
 /**
  * get a cell index
  */
-size_t getIndex(boards_t *self, size_t row, size_t col){
+size_t getIndex(size_t numCols, size_t row, size_t col){
   // TODO:
 }
   

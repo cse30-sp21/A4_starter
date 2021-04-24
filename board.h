@@ -35,6 +35,6 @@ extern void simStep(boards_t *self, size_t steps);		// simulate one step
 extern void setSim(boards_t *self, void (*sim)(boards_t *self, size_t steps));
 //extern void setSim(boards_t *self, void (*sim)(belem *, belem *, size_t, size_t, size_t));
 
-extern size_t getIndex(boards_t *self, size_t row, size_t col);	// get index of (row,col) in 1D buffer
+extern size_t getIndex(size_t numCols, size_t row, size_t col);	// get index of (row,col) in 1D buffer
 
 #endif // _BOARD_H

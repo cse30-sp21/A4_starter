@@ -9,6 +9,6 @@
 #define _SIM_H
 #include "board.h"
 
-extern void simLoop(boards_t *self, size_t steps); // simulation loop
+extern void simLoop(boards_t *self, unsigned int steps); // simulation loop
 
 #endif
