@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
-	printf("simulating life board %d rows %d cols\n",
+	printf("simulating life board %lu rows %lu cols\n",
 		boards->numRows, boards->numCols);
 	fflush(stdout);
 
