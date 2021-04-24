@@ -24,7 +24,6 @@
  * - read the file until done.  each row contains a row and a columns separted by
  *   white space
  *     for each line, set the cell in the current buffer
- * - ensure that no border cells are set to alive
  * - close the file
  * - return the boards pointer if successfull or NULL ptr otherwise
  */
